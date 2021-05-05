@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
-                ('subscription', models.DateField(default=datetime.date(2021, 5, 17))),
+                ('subscription', models.DateField()),
             ],
         ),
         migrations.CreateModel(

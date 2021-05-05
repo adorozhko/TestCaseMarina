@@ -1,13 +1,22 @@
-from django.contrib.admin import ModelAdmin, register
+from django.contrib import admin
+from django.contrib.admin import ModelAdmin, StackedInline, register
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 
-from .models import Author, Book, User
+from .models import Account, Author, Book
+
+admin.site.unregister(User)
+
+
+class AccountInline(StackedInline):
+    model = Account
+    can_delete = False
 
 
 @register(User)
-class UserAdmin(ModelAdmin):
-    list_display = (
-        'name',
-        'subscription'
+class UserAdmin(BaseUserAdmin):
+    inlines = (
+        AccountInline,
     )
 
 
